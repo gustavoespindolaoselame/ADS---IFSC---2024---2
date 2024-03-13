@@ -9,31 +9,55 @@ public class App {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         Batata buzz = new Batata();
-        System.out.println("--------------------------------------");
         System.out.println("atirar; atira");
-        System.out.println("retrair; retrai/abaixa capacete");
+        System.out.println("retrairasa; retrai/abaixa asa");
+        System.out.println("retraircapacete; retrai/abaixa capacete");
+        System.out.println("pegarrasa; pega estado da asa");
+        System.out.println("pegarcapacete; pega estado de capacete");
         System.out.println("fala; fala");
         System.out.println("braco; golpear");
-        String ler = new String();
+        System.out.println("--------------------------------------");
         while(true){
-            ler = teclado.nextLine();
-            if(ler.equals("atirar")){
-                System.out.println(buzz.atirar());
-                System.out.println("--------------------------------------");
-            } 
-            if(ler.equals("retrair")){
-                System.out.println(buzz.retraircapacete());
-                System.out.println("--------------------------------------");
-            } 
-            if(ler.equals("braco")){
-                System.out.println(buzz.golpeando());
-                System.out.println("--------------------------------------");
-            } 
-            if(ler.equals("fala")){
-                Random r = new Random();
+            switch (teclado.nextLine()) {
+                case "atirar":
+                    System.out.println(buzz.atirar());
+                    System.out.println("--------------------------------------");
+                    break;
+
+                case "retraircapacete":
+                    System.out.println(buzz.retraircapacete());
+                    System.out.println("--------------------------------------");
+                    break;
+
+                case "pegarcapacete":
+                    System.out.println(buzz.capacete);
+                    System.out.println("--------------------------------------");
+                    break;
+
+                case "retrairasa":
+                    System.out.println(buzz.retrairasa());
+                    System.out.println("--------------------------------------");
+                    break;
+
+                case "pegarasa":
+                    System.out.println(buzz.asa);
+                    System.out.println("--------------------------------------");
+                    break;
+                
+                case "braco":
+                    System.out.println(buzz.golpeando());
+                    System.out.println("--------------------------------------");
+                    break;
+                
+                case "fala":
+                    Random r = new Random();
                 System.out.println(buzz.falar(r.nextInt(5)));
                 System.out.println("--------------------------------------");
-            }
+                    break;
+
+                default:
+                    break;
+            }    
         }
     }
 }
