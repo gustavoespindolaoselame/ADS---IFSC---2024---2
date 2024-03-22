@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.container {
+    display: flex;
+}
+.column {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 5px;
+}
+.galeria{
+    display: flex;
+    flex-direction: column;
+}   
+.galeria img{
+    width: 50%;
+}
