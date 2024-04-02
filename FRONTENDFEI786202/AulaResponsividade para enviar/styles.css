@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition-property: color, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.container {
+    display: flex;
+}
+
+.column {
+    flex: 0 0 33%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 5px;
+}
+
+.column p {
+    margin-left: 72px;
+}
+
+.galeria {
+    flex-direction: column;
+}
+
+.galeria img {
+    width: 50%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .column {
+        flex: 0 0 25%;
+    }
+    .column p {
+        margin-left: 64px;
+    }
+    body {
+        font-size: medium;
+    }
+    .galeria img {
+        width: 55%;
+    }
+    h2 {
+        transition: color 3s;
+        color: rgb(36, 36, 63);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .column {
+        flex: 0 0 50%;
+    }
+    .column p {
+        margin-left: 32px;
+    }
+    body {
+        font-size: larger;
+    }
+    .galeria img {
+        width: 60%;
+    }
+    h2 {
+        transition: color 3s;
+        color: rgb(45, 45, 133);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .column {
+        flex: 0 0 100%;
+    }
+    body {
+        font-size: xx-large;
+    }
+    .galeria img {
+        width: 66%;
+    }
+    h2 {
+        transition: color 3s;
+        color: blue;
+    }
+}
+
+/* Media query para o modo paisagem */
+@media only screen and (orientation: portrait) {
+    .container {
+        flex-direction: row;
+    }
+    .column {
+        flex: 1;
+    }
+}
