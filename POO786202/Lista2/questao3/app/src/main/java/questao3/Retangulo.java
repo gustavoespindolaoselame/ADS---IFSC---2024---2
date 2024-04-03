@@ -75,23 +75,40 @@ public class Retangulo {
             for (double i = 0; i < this.alt; i++) {    
                 for (double j = 0; j < this.larg; j++) {
                     if(j==0&&i==0){
-                        stringer=stringer.concat("\u250c"); 
-                    } if(j==0&&i==this.alt-1){
-                        stringer=stringer.concat("\u2514"); 
-                    } else if(j==this.larg-1&&i==this.alt-1){
-                        stringer=stringer.concat("\u2518"); 
-                    }else if(j==this.larg-1&&i==0){
-                        stringer=stringer.concat("\u2510"); 
-                    }else if(i>0||i<this.alt-1){
-                        if(j==0||j==this.larg){
+                        //ponto topo esquerdo
+                        stringer=stringer.concat("\u250c");
+                    }
+                    if(j==this.larg-1&&i==this.alt-1){
+                        stringer=stringer.concat("\u2518");
+                        //ponto chao direito
+                    }
+                    if(j==this.larg-1&&i==0){
+                        stringer=stringer.concat("\u2510");
+                        //ponto topo direito
+                    }
+                    if(j==0&&i==this.alt-1){
+                        stringer=stringer.concat("\u2514");
+                        //ponto chao esquerdo
+                    }
+                    if(j>0&&j<this.larg-1&&i==0){
+                        stringer=stringer.concat("\u2500");
+                        //barra topo
+                    }
+                    if(j>0&&j<this.larg-1&&i==this.alt-1){
+                        stringer=stringer.concat("\u2500");
+                        //barra chão
+                    }
+                    if(i>0&&i<this.alt-1&&j==0){
                         stringer=stringer.concat("\u2502");
-                        }
-                    } else if(j>0||j<this.larg-1){
-                        if(i==0||i==this.alt){
-                            stringer=stringer.concat("\u2500");
-                            }
-                    } else {
+                        //barra esquerda
+                    }
+                    if(i>0&&i<this.alt-1&&j==this.larg-1){
+                        stringer=stringer.concat("\u2502");
+                        //barra direita
+                    }
+                    if(i>0&&j>0&&i<this.alt-1&&j<this.larg-1){
                         stringer=stringer.concat(" ");
+                        //centro
                     }
                 }
                 stringer=stringer.concat("\n");

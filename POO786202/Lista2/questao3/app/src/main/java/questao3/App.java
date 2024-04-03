@@ -9,5 +9,8 @@ public class App {
         System.out.println(r1.toString());
         r1.setCodificacao("UTF8");
         System.out.println(r1.toString());
+        r1.setAlt(16);
+        r1.setLarg(48);
+        System.out.println(r1.toString());
     }
 }
