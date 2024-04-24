@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="script" href="script.js">
+    <style>
+        .div-block-r {
+            background-color: red;
+        }
+
+        .div-block-g {
+            background-color: green;
+        }
+
+        .div-block-b {
+            background-color: blue;
+        }
+
+        .div-flexbox-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .div-flexbox-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .div-flexbox-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .div-flexbox-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .div-grid{
+            width: 80%;
+            margin: 0 auto;
+            display:grid;
+            grid-template-columns: 75% 25%;
+            grid-template-rows: 100px 450px 150px;
+        }
+        div:hover{
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div-flexbox-row">
+        <div class="div-block-r" id="banana">1</div>
+        <div class="div-block-g">2</div>
+        <div class="div-block-b">3</div>
+        <div class="div-block-r">4</div>
+        <div class="div-block-g">5</div>
+        <div class="div-block-b">6</div>
+    </div>
+    <div class="div-flexbox-col">
+        <div class="div-block-r">1</div>
+        <div class="div-block-g">2</div>
+        <div class="div-block-b">3</div>
+        <div class="div-block-r">4</div>
+        <div class="div-block-g">5</div>
+        <div class="div-block-b">6</div>
+    </div>
+    <div class="div-grid">
+        <div class="div-block-r">1</div>
+        <div class="div-block-g">2</div>
+        <div class="div-block-b">3</div>
+        <div class="div-block-r">4</div>
+        <div class="div-block-g">5</div>
+        <div class="div-block-b">6</div>
+    </div>
+</body>
+
+</html>
