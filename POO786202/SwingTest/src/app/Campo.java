@@ -1,5 +1,8 @@
 package app;
 
+import java.awt.*;
+import javax.swing.*;
+
 public class Campo {
     private int linhas = 11;
     private int colunas = 11;
@@ -35,5 +38,30 @@ public class Campo {
         this.colunas = colunas;
         this.width = width;
         this.height = height;
+    }
+
+    public static void CriarCampo(JPanel jcampo, Campo campo, JPanel[][] tabelacampo, Color cor){
+        for (int i = 0; i < campo.getLinhas(); i++) {
+            for (int j = 0; j < campo.getColunas(); j++) {
+                JPanel panel = new JPanel();
+                if(cor==Color.BLACK){
+                    cor=Color.WHITE;
+                }
+                else{
+                    cor=Color.BLACK;
+                }
+                panel.setBackground(cor);
+                jcampo.add(panel);
+                tabelacampo[i][j] = panel;
+            }
+            if(campo.getColunas()%2==0){
+            if(cor==Color.BLACK){
+                cor=Color.WHITE;
+            }
+            else{
+                cor=Color.BLACK;
+            }
+        }
+        }
     }
 }
