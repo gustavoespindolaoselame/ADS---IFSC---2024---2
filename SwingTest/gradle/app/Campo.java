@@ -10,29 +10,36 @@ public class Campo {
     private int width = 500;
     private int height = 500;
 
-    public static void CriarCampo(BufferedImage spriteSheet, JPanel jcampo, Campo campo, JPanel[][] tabelacampo,
+    public static void CriarCampo(int tileset[][], BufferedImage spriteSheet, JPanel jcampo, Campo campo,
             JFrame frame,
             ArrayList<Peca> arPecas) {
-        for (int i = 0; i < campo.getLinhas(); i++) {
-            for (int j = 0; j < campo.getColunas(); j++) {
+        for (int i = 0; i < campo.getColunas(); i++) {
+            for (int j = 0; j < campo.getLinhas(); j++) {
                 boolean cont = true;
-                for (int m = 0; m < arPecas.size(); m++) {
-                    if (arPecas.get(m).getPosX() == i && arPecas.get(m).getPosY() == j) {
-                        placePeca(jcampo, tabelacampo, i, j, m, frame, arPecas);
-                        cont = false;
+
+                if (tileset[i][j] > 4) {
+                    for (int m = 0; m < arPecas.size(); m++) {
+                        if (arPecas.get(m).getPosX() == i && arPecas.get(m).getPosY() == j) {
+                            if((i+(j*campo.getColunas()))%2!=0){
+                                m++;
+                            }
+                            placePeca(jcampo, m, frame, arPecas);
+                            cont = false;
+                        }
+
                     }
+
                 }
                 if (cont == true) {
-                    placeTile(spriteSheet, jcampo, campo, tabelacampo, i, j, frame, arPecas);
+                    placeTile(spriteSheet, jcampo, campo, tileset[i][j], frame, arPecas);
                 }
             }
         }
         frame.add(jcampo);
     }
 
-    public static void placePeca(JPanel jcampo, JPanel[][] tabelacampo, int posx, int posy, int indid, JFrame frame,
+    public static void placePeca(JPanel jcampo, int indid, JFrame frame,
             ArrayList<Peca> arPecas) {
-        JPanel panel = new JPanel();
         ImageIcon icon = new ImageIcon(arPecas.get(indid).getSprite());
         JButton botao = new JButton(icon);
         botao.setBorderPainted(false);
@@ -40,34 +47,25 @@ public class Campo {
         botao.setFocusPainted(false);
         botao.setMargin(new Insets(0, 0, 0, 0));
         botao.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
-        tabelacampo[posx][posy] = panel;
         jcampo.add(botao);
     }
 
-    public static void placeTile(BufferedImage spriteSheet, JPanel jcampo, Campo campo, JPanel[][] tabelacampo,
-            int posx, int posy, JFrame frame,
+    public static void placeTile(BufferedImage spriteSheet, JPanel jcampo, Campo campo,
+            int indid, JFrame frame,
             ArrayList<Peca> arPecas) {
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel();
-        if ((posx + (posy * campo.getColunas())) % 2 == 0) {
-            BufferedImage subImage = spriteSheet.getSubimage(0, 32, 16, 16);
-            Image sprite = subImage.getScaledInstance(frame.getWidth() / campo.getColunas(),
-                    frame.getHeight() / campo.getLinhas(), Image.SCALE_SMOOTH);
-            ImageIcon icon = new ImageIcon(sprite);
-            label.setIcon(icon);
-            panel.add(label);
-            tabelacampo[posx][posy] = panel;
-            jcampo.add(panel);
-        } else {
-            BufferedImage subImage = spriteSheet.getSubimage(16, 32, 16, 16);
-            Image sprite = subImage.getScaledInstance(frame.getWidth() / campo.getColunas(),
-                    frame.getHeight() / campo.getLinhas(), Image.SCALE_SMOOTH);
-            ImageIcon icon = new ImageIcon(sprite);
-            label.setIcon(icon);
-            panel.add(label);
-            tabelacampo[posx][posy] = panel;
-            jcampo.add(panel);
-        }
+
+        BufferedImage subImage = spriteSheet.getSubimage(indid * 16, 0, 16, 16);
+        Image sprite = subImage.getScaledInstance(frame.getWidth() / campo.getColunas(),
+                frame.getHeight() / campo.getLinhas(), Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(sprite);
+        JButton botao = new JButton(icon);
+        botao.setBorderPainted(false);
+        botao.setContentAreaFilled(false);
+        botao.setFocusPainted(false);
+        botao.setMargin(new Insets(0, 0, 0, 0));
+        botao.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+        jcampo.add(botao);
+
     }
 
     public int getLinhas() {

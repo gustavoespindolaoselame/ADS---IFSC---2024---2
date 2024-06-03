@@ -31,34 +31,38 @@ public class Main {
         JPanel jcampo = new JPanel(new GridLayout(campo.getLinhas(), campo.getColunas(), 0, 0));
         jcampo.setBackground(Color.WHITE);
         jcampo.setBounds(campoX, campoY, campo.getWidth(), campo.getHeight() - (frame.getHeight() / 9));
-        JPanel[][] tabelacampo = new JPanel[campo.getLinhas()][campo.getColunas()];
+
+        int[][] tileset = new int[campo.getLinhas()][campo.getColunas()];
 
         ArrayList<Peca> arPecas = new ArrayList<>();
         for (int i = 0; i < campo.getColunas(); i++) {
-            arPecas.add(i, new Peca(0, spriteSheet, frame, campo));
-            arPecas.get(i).setPosY(i);
-            arPecas.get(i).setPosX(0);
+            for (int j = 0; j < campo.getLinhas(); j++) {
+            if((i+(j*campo.getColunas()))%2==0){
+            tileset[i][j]=0;
+            } else {
+                tileset[i][j]=1;   
+            }
+        }
+    }
+        for (int i = 0; i < campo.getColunas(); i++) {
+            arPecas.add(i, new Peca(0,i,9, tileset, spriteSheet, frame, campo));
         }
         for (int i = 0; i < campo.getColunas(); i++) {
-            arPecas.add(i + campo.getColunas(), new Peca(1, spriteSheet, frame, campo));
-            arPecas.get(i + campo.getColunas()).setPosY(i);
-            arPecas.get(i + campo.getColunas()).setPosX(campo.getLinhas() - 1);
+            arPecas.add(i + campo.getColunas(), new Peca(campo.getLinhas() - 1,i,10, tileset, spriteSheet, frame, campo));
         }
 
         frame.getContentPane().add(fundo);
-        Campo.CriarCampo(spriteSheet, jcampo, campo, tabelacampo, frame, arPecas);
+        Campo.CriarCampo(tileset, spriteSheet, jcampo, campo, frame, arPecas);
         frame.setVisible(true);
 
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
         }
-        arPecas.add(3, new Peca(1, spriteSheet, frame, campo));
-        arPecas.get(3).setPosY(2);
-        arPecas.get(3).setPosX(2);
+        arPecas.add(0, new Peca(2,2,10, tileset, spriteSheet, frame, campo));
         frame.getContentPane().add(fundo);
         jcampo.removeAll();
-        Campo.CriarCampo(spriteSheet, jcampo, campo, tabelacampo, frame, arPecas);
+        Campo.CriarCampo(tileset, spriteSheet, jcampo, campo, frame, arPecas);
         frame.setVisible(true);
     }
 }
