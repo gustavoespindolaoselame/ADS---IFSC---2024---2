@@ -13,22 +13,16 @@ public class Campo {
     public static void CriarCampo(int tileset[][], BufferedImage spriteSheet, JPanel jcampo, Campo campo,
             JFrame frame,
             ArrayList<Peca> arPecas) {
-        for (int i = 0; i < campo.getColunas(); i++) {
-            for (int j = 0; j < campo.getLinhas(); j++) {
+        for (int i = 0; i < campo.getLinhas(); i++) {
+            for (int j = 0; j < campo.getColunas(); j++) {
                 boolean cont = true;
-
                 if (tileset[i][j] > 4) {
                     for (int m = 0; m < arPecas.size(); m++) {
-                        if (arPecas.get(m).getPosX() == i && arPecas.get(m).getPosY() == j) {
-                            if((i+(j*campo.getColunas()))%2!=0){
-                                m++;
-                            }
-                            placePeca(jcampo, m, frame, arPecas);
+                        if (arPecas.get(m).getPosX() == i && arPecas.get(m).getPosY() == j) {                            
+                            placePeca(jcampo, m, frame, arPecas);                            
                             cont = false;
                         }
-
                     }
-
                 }
                 if (cont == true) {
                     placeTile(spriteSheet, jcampo, campo, tileset[i][j], frame, arPecas);
@@ -38,9 +32,9 @@ public class Campo {
         frame.add(jcampo);
     }
 
-    public static void placePeca(JPanel jcampo, int indid, JFrame frame,
+    public static void placePeca(JPanel jcampo, int textureid, JFrame frame,
             ArrayList<Peca> arPecas) {
-        ImageIcon icon = new ImageIcon(arPecas.get(indid).getSprite());
+        ImageIcon icon = new ImageIcon(arPecas.get(textureid).getSprite());
         JButton botao = new JButton(icon);
         botao.setBorderPainted(false);
         botao.setContentAreaFilled(false);
@@ -51,10 +45,10 @@ public class Campo {
     }
 
     public static void placeTile(BufferedImage spriteSheet, JPanel jcampo, Campo campo,
-            int indid, JFrame frame,
+            int textureid, JFrame frame,
             ArrayList<Peca> arPecas) {
 
-        BufferedImage subImage = spriteSheet.getSubimage(indid * 16, 0, 16, 16);
+        BufferedImage subImage = spriteSheet.getSubimage(textureid * 16, 0, 16, 16);
         Image sprite = subImage.getScaledInstance(frame.getWidth() / campo.getColunas(),
                 frame.getHeight() / campo.getLinhas(), Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(sprite);

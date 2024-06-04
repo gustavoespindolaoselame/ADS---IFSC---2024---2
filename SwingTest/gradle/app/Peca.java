@@ -5,19 +5,35 @@ import java.awt.image.BufferedImage;
 public class Peca {
     private int posX = 0;
     private int posY = 0;
+    private int textureid;
+    private static int nextId = 0;
     private int id;
     private Image sprite;
 
-    public Peca(int posX, int posY, int id, int tileset[][], BufferedImage spriteSheet, JFrame frame, Campo campo) {
+    public Peca(int posX, int posY, int textureid, int tileset[][], BufferedImage spriteSheet, JFrame frame, Campo campo) {
         this();
-        this.id = id;
+        this.textureid = textureid;
         this.posX=posX;
         this.posY=posY;
-        tileset[posX][posY]=id;
-        System.out.println(tileset[posX][posY]);
-        BufferedImage subImage = spriteSheet.getSubimage((this.id % 4) * 16,(this.id / 4) * 16, 16, 16);
+        
+        int backgroundcolor=0;
+        
+        if(tileset[posX][posY]==1){
+            backgroundcolor++;
+        } 
+        BufferedImage subImage = spriteSheet.getSubimage(((this.textureid + backgroundcolor)% 4) * 16,(this.textureid / 4) * 16, 16, 16);
+        tileset[posX][posY]=textureid;
         this.sprite = subImage.getScaledInstance(frame.getWidth() / campo.getColunas(),
                 frame.getHeight() / campo.getLinhas(), Image.SCALE_DEFAULT);
+                this.id = nextId++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPosX() {
@@ -36,12 +52,12 @@ public class Peca {
         this.posY = posY;
     }
 
-    public int getId() {
-        return id;
+    public int gettextureId() {
+        return textureid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void settextureId(int id) {
+        this.textureid = id;
     }
 
     public Image getSprite() {

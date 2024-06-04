@@ -35,17 +35,25 @@ public class Main {
         int[][] tileset = new int[campo.getLinhas()][campo.getColunas()];
 
         ArrayList<Peca> arPecas = new ArrayList<>();
-        for (int i = 0; i < campo.getColunas(); i++) {
-            for (int j = 0; j < campo.getLinhas(); j++) {
-            if((i+(j*campo.getColunas()))%2==0){
+        for (int i = 0; i < campo.getLinhas(); i++) {
+            for (int j = 0; j < campo.getColunas(); j++) {
+                if(i%2==0&&campo.getColunas()%2==0){ //se o número de colunas é par ao trocar de linha
+            if((j+(i*campo.getColunas()))%2==0){                 //se o valor atual é par
+                    tileset[i][j]=1;
+                } else{
             tileset[i][j]=0;
+                }
             } else {
-                tileset[i][j]=1;   
+                if((j+(i*campo.getColunas()))%2==0){//se o valor atual é par
+                    tileset[i][j]=0;
+                } else{
+            tileset[i][j]=1;
+                }                
             }
         }
     }
         for (int i = 0; i < campo.getColunas(); i++) {
-            arPecas.add(i, new Peca(0,i,9, tileset, spriteSheet, frame, campo));
+            arPecas.add(i, new Peca(0,i,8, tileset, spriteSheet, frame, campo));
         }
         for (int i = 0; i < campo.getColunas(); i++) {
             arPecas.add(i + campo.getColunas(), new Peca(campo.getLinhas() - 1,i,10, tileset, spriteSheet, frame, campo));
