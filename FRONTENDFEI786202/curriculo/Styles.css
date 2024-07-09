@@ -1,76 +1,106 @@
-
-html, body {
+html,
+body {
     box-sizing: border-box;
-    background-color: rgb(11, 24, 30);
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .styled-image {
-    max-width: 100%; /* Ensures the image is responsive */
-    height: auto; /* Maintains aspect ratio */
-    margin-top: 20px; /* Adds space above the image */
+    max-width: 100%;
+    height: auto;
 }
 
-.top{
-    display:flex;
+.top {
+    z-index: 9999; /* Check if this high z-index is necessary */
+    display: flex;
     align-items: center;
     justify-content: center;
-    position:fixed;
+    position: fixed;
     background-color: black;
     width: 100%;
-    height: 15%;
+    height: 15%; /* Adjust height to fill the top properly */
     font-size: 2.5em;
     font-weight: bolder;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Times New Roman';
     top: 0;
     left: 0;
     right: 0;
 }
 
 .sidebar {
-    display:flex;
+    z-index: 1;
+    display: flex;
     align-items: center;
-    position:fixed;
+    position: fixed;
     flex-direction: column;
     background-color: #333;
-    top: 15%;
+    top: 15%; /* Ensure the sidebar fills from the top properly */
     left: 0;
     width: 5%;
-    height: 100%;
+    height: 100%; /* Adjust height to fill the sidebar properly */
 }
 
-main{
-    margin-top: 8.5%;
-    margin-left: 5%;
-}
-
-section{
+section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 25vh;
-    margin-top: 1vh;
-    margin-right: 5%;
+    height: 100vh; /* Adjust to fill the viewport height */
+    padding: 0;
+    margin: 0;
 }
 
-section h2{
-    font-size: xx-large;
+section h2 {
+    margin-top: 3.0em;
+    font-size: 4.5em;
+    font-family: 'Times New Roman';
+    color: #e06a6a;
+    z-index: 999; /* Check if high z-index is necessary */
 }
 
 section ul {
-    padding-left: 0; /* Remove default padding */
-    list-style-type: none; /* Remove default list styling */
-    margin-top: -1%;
-    width: 100%;
+    font-family: Cambria;
+    font-size: 2.25em;
+    list-style-type: none;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center;
+    color: #e06a6a;
+    padding: 10px;
+    width: 60%;
+    text-align: center;
+    z-index: 999; /* Check if high z-index is necessary */
 }
 
-section li {
-    padding: 10px; /* Add some padding for better visibility */
-    box-sizing: border-box; /* Ensure padding does not affect the width */
-    width: 50%; /* Adjust width as needed */
-    text-align: center; /* Center text inside li */
+#textpanel {
+    display: flex;
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8; /* Adjust opacity with a decimal value */
+}
+
+.parallax {
+    background-image: url("img_parallax.jpg"); /* Check path */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#ifsc {
+    background-image: url('./imgs/ifsc.jpeg'); /* Check path */
+}
+
+#ufsc {
+    background-image: url('./imgs/ufsc.jpg'); /* Check path */
+}
+
+#prog {
+    background-image: url('./imgs/prog.jpg'); /* Check path */
+}
+
+#damas {
+    background-image: url('./imgs/damas.webp'); /* Check path */
 }
